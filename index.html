@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#102a43" />
+    <meta name="description" content="A bilingual NawrasEdu questionnaire that helps Tawjihi students explore three IT career paths." />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23102a43'/%3E%3Cpath d='M17 43V21h7l16 14V21h7v22h-7L24 29v14z' fill='%232dd4bf'/%3E%3C/svg%3E" />
+    <title>NawrasEdu Career Guide</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header" aria-label="Main header">
+        <button class="brand" type="button" data-action="home" aria-label="NawrasEdu home">
+          <span class="brand-mark" aria-hidden="true">N</span>
+          <span>Nawras<span>Edu</span></span>
+        </button>
+
+        <div class="language-switch" role="group" aria-label="Choose language">
+          <button type="button" class="language-option is-active" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" class="language-option" data-lang="ar" aria-pressed="false">ع</button>
+        </div>
+      </header>
+
+      <main id="app" tabindex="-1">
+        <section class="view intro-view is-active" id="intro-view" aria-labelledby="intro-title">
+          <div class="intro-copy">
+            <p class="eyebrow" data-i18n="eyebrow">A NawrasEdu experience</p>
+            <h1 id="intro-title" data-i18n="introTitle">Which IT path feels most like you?</h1>
+            <p class="lead" data-i18n="introLead">Answer 18 short questions and discover how well your interests match three growing technology careers.</p>
+
+            <div class="career-pills" aria-label="Career paths">
+              <span data-i18n="web">Web Development</span>
+              <span data-i18n="qa">Quality Assurance</span>
+              <span data-i18n="data">Data Science</span>
+            </div>
+
+            <div class="intro-actions">
+              <button class="primary-button" type="button" data-action="start">
+                <span data-i18n="start">Start questionnaire</span>
+                <span aria-hidden="true" class="button-arrow">→</span>
+              </button>
+              <span class="time-note" data-i18n="time">About 4 minutes</span>
+            </div>
+          </div>
+
+          <aside class="intro-panel" aria-label="What to expect">
+            <div class="panel-orbit" aria-hidden="true"><span>01</span><span>02</span><span>03</span></div>
+            <h2 data-i18n="beforeTitle">Before you begin</h2>
+            <ul>
+              <li data-i18n="beforeOne">There are no right or wrong answers.</li>
+              <li data-i18n="beforeTwo">Choose what honestly sounds most like you.</li>
+              <li data-i18n="beforeThree">Your result is guidance for exploration—not a final decision.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="view quiz-view" id="quiz-view" aria-labelledby="question-text" hidden>
+          <div class="quiz-topline">
+            <button class="text-button" type="button" data-action="exit" data-i18n="exit">Exit</button>
+            <div class="progress-copy"><span id="progress-label">Question 1 of 18</span><strong id="progress-percent">6%</strong></div>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="1" aria-valuemax="18" aria-valuenow="1" aria-label="Question progress">
+            <span id="progress-bar"></span>
+          </div>
+
+          <article class="question-card">
+            <p class="question-number" id="question-number">01</p>
+            <h1 id="question-text"></h1>
+            <p class="question-help" data-i18n="questionHelp">How much does this sound like you?</p>
+
+            <fieldset class="answer-scale" id="answer-scale">
+              <legend class="sr-only" data-i18n="answerLegend">Select an answer from one to five</legend>
+            </fieldset>
+
+            <div class="scale-ends" aria-hidden="true">
+              <span data-i18n="notMe">Not like me</span>
+              <span data-i18n="veryMe">Very much like me</span>
+            </div>
+          </article>
+
+          <div class="quiz-actions">
+            <button class="secondary-button" type="button" data-action="back" data-i18n="back">Back</button>
+            <button class="primary-button" type="button" data-action="next" disabled>
+              <span data-i18n="next">Next question</span>
+              <span aria-hidden="true" class="button-arrow">→</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="view result-view" id="result-view" aria-labelledby="result-title" hidden>
+          <div class="result-hero">
+            <p class="eyebrow" data-i18n="resultEyebrow">Your career match</p>
+            <h1 id="result-title"></h1>
+            <p id="result-summary" class="lead"></p>
+          </div>
+
+          <div class="result-grid">
+            <section class="score-card" aria-labelledby="scores-title">
+              <div class="section-heading">
+                <h2 id="scores-title" data-i18n="scoresTitle">Your compatibility scores</h2>
+                <span class="info-chip" data-i18n="independent">Independent scores</span>
+              </div>
+              <div id="score-list" class="score-list"></div>
+              <p class="score-note" data-i18n="scoreNote">These scores show compatibility, not probability, so they do not need to add up to 100%.</p>
+            </section>
+
+            <section class="detail-card detail-card--accent" aria-labelledby="why-title">
+              <p class="card-kicker" data-i18n="whyKicker">Why it may fit</p>
+              <h2 id="why-title"></h2>
+              <p id="why-copy"></p>
+            </section>
+
+            <section class="detail-card" aria-labelledby="majors-title">
+              <p class="card-kicker" data-i18n="majorsKicker">If you would like to select a major</p>
+              <h2 id="majors-title" data-i18n="majorsTitle">Majors worth exploring</h2>
+              <div id="major-list" class="major-list"></div>
+              <p class="major-note" data-i18n="majorNote">Names and admission requirements differ between universities. Compare current study plans before choosing.</p>
+            </section>
+          </div>
+
+          <div class="result-actions">
+            <button class="primary-button" type="button" data-action="restart" data-i18n="restart">Take it again</button>
+            <button class="secondary-button" type="button" data-action="home" data-i18n="home">Back to introduction</button>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <span data-i18n="footer">A NawrasEdu product</span>
+        <span data-i18n="footerNote">Made to help Tawjihi students explore with confidence.</span>
+      </footer>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
